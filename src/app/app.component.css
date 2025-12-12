@@ -1,0 +1,10 @@
+
+.font-goem{
+  font-family: "Geom", sans-serif;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, purple, pink);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

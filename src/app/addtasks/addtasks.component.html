@@ -1,0 +1,126 @@
+<form class="d-flex flex-column gap-3 mt-3 mb-3 rounded" #taskform="ngForm" (ngSubmit)="addtask(tasks)">
+
+  <!-- Cross Icon -->
+  <div class="d-flex justify-content-end">
+    <mat-icon class=" rounded bg-danger text-white"  (click)="closebtn()">close</mat-icon>
+  </div>
+
+  <!-- Email -->
+  <div class="d-flex gap-1 flex-column">
+    <label class="fw-semibold" for="email " [class.text-danger]="email.invalid && email.touched">Email</label>
+    <div class="position-relative d-flex gap-3 flex-column justify-content-center">
+      <mat-icon class="position-absolute z-3 text-secondary" [class.text-danger]="email.invalid && email.touched">email</mat-icon>
+      <input type="email"
+             class="pt-2 pb-2 ps-4 pe-2 border rounded"
+             [class.border-danger]="email.invalid && email.touched"
+             [class.border-success]="email.valid"
+             required
+             placeholder="Enter email" name="email" id="email"
+             [(ngModel)]="tasks.email"
+             #email="ngModel"
+             />
+    </div>
+
+    <span *ngIf="email.invalid && email.touched" class="text-danger">Email is required</span>
+  </div>
+
+  <!-- Password -->
+  <div class="d-flex gap-1 flex-column">
+    <label class="fw-semibold" for="password" [class.text-danger]="password.invalid && password.touched">Password</label>
+    <div class="position-relative d-flex gap-3 flex-column justify-content-center">
+      <mat-icon class="position-absolute z-3 text-secondary " [class.text-danger]="password.invalid && password.touched">lock</mat-icon>
+      <input type="password"
+             class="pt-2 pb-2 ps-4 pe-2 border rounded"
+             placeholder="Enter password" name="password" id="password"
+             [class.border-danger]="password.invalid && password.touched"
+             [class.border-success]="password.valid"
+             required
+             [(ngModel)]="tasks.password"
+             #password="ngModel"/>
+    </div>
+
+    <span *ngIf="password.invalid && password.touched" class="text-danger">Password is required</span>
+  </div>
+
+  <!-- Task Title -->
+  <div class="d-flex gap-1 flex-column">
+    <label class="fw-semibold" for="title" [class.text-danger]="title.invalid && title.touched">Task Title</label>
+    <input type="text"
+           class="pt-2 pb-2 ps-2 pe-2 border rounded text-secondary"
+           placeholder="Enter title" name="title" id="title"
+           [class.border-danger]="title.invalid && title.touched"
+           [class.border-success]="title.valid"
+           required
+           [(ngModel)]="tasks.title"
+           #title="ngModel" />
+
+    <span *ngIf="title.invalid && title.touched" class="text-danger">Title is required</span>
+  </div>
+
+  <!-- Task Description -->
+  <div class="d-flex gap-1 flex-column">
+    <label class="fw-semibold" for="desc" [class.text-danger]="description.invalid && description.touched">Description</label>
+    <textarea class="pt-2 pb-2 ps-2 pe-2 border rounded text-secondary"
+              rows="5" cols="30"
+              placeholder="Enter Description...." name="desc" id="desc"
+              [(ngModel)]="tasks.description"
+              #description="ngModel"
+              [class.border-danger]="description.invalid && description.touched"
+              [class.border-success]="description.valid"
+              required></textarea>
+
+    <span *ngIf="description.invalid && description.touched" class="text-danger">description is required</span>
+  </div>
+
+  <!-- Task Priority -->
+  <div class="d-flex gap-1 flex-column">
+    <label class="fw-semibold" for="priority" [class.text-danger]="priority.invalid && priority.touched">Priority</label>
+    <select class="pt-2 pb-2 ps-2 pe-2 border rounded text-secondary" name="priority" id="priority"
+            [class.border-danger]="priority.invalid && priority.touched"
+            [class.border-success]="priority.valid"
+            required
+            [(ngModel)]="tasks.priority"
+            #priority="ngModel">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+
+    <span *ngIf="priority.invalid && priority.touched" class="text-danger">Priority is required</span>
+  </div>
+
+  <!-- Task Category -->
+  <div class="d-flex gap-1 flex-column">
+    <label class="fw-semibold" for="Category" [class.text-danger]="category.invalid && category.touched">Task Category</label>
+    <input type="text" class="pt-2 pb-2 ps-2 pe-2 border rounded text-secondary"
+           placeholder="Enter Category" name="Category" id="Category"
+           [class.border-danger]="category.invalid && category.touched"
+           [class.border-success]="category.valid"
+           required
+           [(ngModel)]="tasks.category"
+           #category="ngModel" />
+
+    <span *ngIf="category.invalid && category.touched" class="text-danger">Priority is required</span>
+  </div>
+
+  <!-- Due Date -->
+  <div class="d-flex gap-1 flex-column" [class.text-danger]="date.invalid && date.touched">
+    <label class="fw-semibold" for="duedate">Task Due Date</label>
+    <input type="date" class="pt-2 pb-2 ps-2 pe-2 border rounded text-secondary"
+           placeholder="Enter Due Date" name="duedate" id="duedate"
+           [class.border-danger]="date.invalid && date.touched"
+           [class.border-success]="date.valid"
+           required
+           [(ngModel)]="tasks.date"
+           #date="ngModel" />
+
+    <span *ngIf="date.invalid && date.touched" class="text-danger">Priority is required</span>
+  </div>
+
+  <!-- Submit -->
+  <div class="d-flex gap-3 justify-content-end">
+    <button type="submit" class="pt-2 pb-2 ps-2 pe-2 border rounded text-white bg-primary" [disabled]="taskform.invalid">Add Task</button>
+    <button type="reset" class="pt-2 pb-2 ps-2 pe-2 border rounded text-white bg-danger" [disabled]="taskform.invalid">Cancel</button>
+  </div>
+
+</form>

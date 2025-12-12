@@ -1,0 +1,20 @@
+
+<div class="d-flex justify-content-between align-items-center p-2 ps-3 shadow p-3 mb-5 bg-body-tertiary rounded">
+  <div class="d-flex gap-2">
+    <mat-icon class="text-gradient">menu</mat-icon>
+    <p class="d-flex align-items-center gap-2 fs-2 fw-bold text-gradient">
+      Just do it<mat-icon>check_circle_outline</mat-icon>
+    </p>
+  </div>
+  <div class="d-flex gap-5 align-items-center  pt-2 ps-3">
+    <a class="nav-link" routerLink="todos" routerLinkActive="active">
+      <p class="fs-5 fw-semibold font-goem text-secondary">My Todos</p>
+    </a>
+    <a class="nav-link d-flex gap-1 align-items-center" routerLink="Find" routerLinkActive="active">
+      <mat-icon class="text-secondary">search</mat-icon>
+      <p class="fs-5 fw-semibold font-goem text-secondary">Find Todos</p>
+    </a>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

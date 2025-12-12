@@ -1,0 +1,33 @@
+  <!-- List of tasks-->
+<div *ngIf="tasksarr.length !== 0" class="w-75 ms-auto me-auto mt-2 border-top border-bottom rounded pt-3 shadow p-3 mb-5 bg-body-tertiary rounded ">
+  <div class="d-flex gap-3 flex-column justify-content-center align-items-center mb-3">
+    <div *ngFor="let task of tasksarr" class="w-75 border rounded mt-3 d-flex flex-column p-3 gap-2">
+      <!-- task title-->
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex gap-2 align-items-center">
+          <p style="height:13px; width:13px" class="border rounded"></p>
+          <p class="fw-semibold fs-4">{{task.title}}</p>
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+          <mat-icon>edit</mat-icon>
+          <mat-icon>delete</mat-icon>
+        </div>
+      </div>
+
+      <!--Task Description-->
+      <div class="text-secondary fs-6">
+       {{task.description}}
+      </div>
+
+      <!-- small info-->
+      <div class="d-flex gap-2">
+        <p class="text-danger bg-danger-subtle ps-3 pe-3 pt-2 pb-2 rounded">{{task.priority}}</p>
+        <p class="text-primary bg-primary-subtle  ps-3 pe-3 pt-2 pb-2 rounded">{{task.category}}</p>
+        <p class="text-info-emphasis bg-info-subtle ps-3 pe-3 pt-2 pb-2 rounded">{{task.date}}</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="tasksarr.length === 0" class="fs-4 text-body-tertiary text-center">No tasks Remaining</div>
