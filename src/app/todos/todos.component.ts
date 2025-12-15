@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { AlltasksService } from '../alltasks.service';
 
 @Component({
@@ -10,10 +10,10 @@ export class TodosComponent {
   show: boolean = false;
   Totaltasks : number = 0;
 
-  constructor(private _totaltasks: AlltasksService) { }
+  constructor(private _totaltasks: AlltasksService, public openform: AlltasksService) { }
 
-  showform(value){
-    this.show = value;
+  showform(value) {
+    this.openform.opentaskpopup(value);
   }
 
 }

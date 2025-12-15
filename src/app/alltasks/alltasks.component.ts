@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Component } from '@angular/core';
 import { AlltasksService } from '../alltasks.service';
 
@@ -10,11 +10,16 @@ import { AlltasksService } from '../alltasks.service';
 export class AlltasksComponent implements OnInit {
 
   tasksarr = [];
+  openpassword : boolean = false;
 
   constructor(private _alltasks: AlltasksService) {}
 
   ngOnInit() {
     this.tasksarr = this._alltasks.getalltask();
+  }
+
+  passwordpopup(value) {
+    this.openpassword = value;
   }
 
 }

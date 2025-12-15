@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AlltasksService {
   Addtasks = [];
+  opentask: boolean = false;
 
   constructor() {
     this.loadfromlocalstorage();
@@ -12,7 +13,7 @@ export class AlltasksService {
 
   /* add tasks into a localStorage*/
   addTasks(task) {
-    this.Addtasks.push(task)
+    this.Addtasks.unshift(task)
     this.loadtoLocalstorage();
   }
 
@@ -28,5 +29,10 @@ export class AlltasksService {
   loadfromlocalstorage() {
     const saved = localStorage.getItem('Tasks');
     this.Addtasks = saved ? JSON.parse(saved) : [];
+  }
+
+  /* open task popup*/
+  opentaskpopup(value) {
+    return this.opentask = value;
   }
 }
