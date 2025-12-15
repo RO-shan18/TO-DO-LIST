@@ -11,7 +11,7 @@ import { AlltasksService } from '../alltasks.service';
 export class PasswordpopupComponent {
   Alltasks: [];
 
-  constructor(private _alltasks: AlltasksService, private openform: AlltasksService) { }
+  constructor(private _alltasks: AlltasksService, private openform: AlltasksService, private updatetask: AlltasksService) { }
 
   ngOnInit() {
     this.Alltasks = this._alltasks.getalltask();
@@ -44,7 +44,7 @@ export class PasswordpopupComponent {
 
       /* Put existing values inside the form */
       let findtask = this.Alltasks.find((task: Ialltasks) => task.password === pass)
-      console.log(findtask)
+      this.updatetask.updatetasks = findtask;  /* put a value inside the alltasks service variable */
     }
   }
 

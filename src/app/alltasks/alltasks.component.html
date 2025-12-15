@@ -29,7 +29,7 @@
 
   </div>
 
-  <app-passwordpopup *ngIf="openpassword" (customevent)="passwordpopup($event)" class="position-absolute top-50 start-50 translate-middle" ></app-passwordpopup>
+  <app-passwordpopup *ngIf="openpassword" (customevent)="passwordpopup($event)" class="position-fixed top-50 start-50 translate-middle" ></app-passwordpopup>
 </div>
 
 <div *ngIf="tasksarr.length === 0" class="fs-4 text-body-tertiary text-center">No tasks Remaining</div>

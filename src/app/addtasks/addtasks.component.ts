@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 import { Ialltasks } from '../alltasks.interface';
 import { AlltasksService } from '../alltasks.service';
 
@@ -9,13 +9,14 @@ import { AlltasksService } from '../alltasks.service';
   styleUrls: ['./addtasks.component.css']
 })
 export class AddtasksComponent implements OnInit {
-
+  
   /* add tasks*/
-  constructor(private _tasks: AlltasksService) { }
+  constructor(private _tasks: AlltasksService, public updtask: AlltasksService) {}
 
   ngOnInit() {}
 
   closeform: boolean = false;
+  updlength = Object.keys(this.updtask.updatetasks).length
 
   @Output() customevent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -25,6 +26,7 @@ export class AddtasksComponent implements OnInit {
 
   /* tasks here */
   tasks: Ialltasks = {
+    id: uuidv4(),
     email: null,
     password: null,
     title: null,
@@ -34,8 +36,15 @@ export class AddtasksComponent implements OnInit {
     date: null
   }
 
-  addtask(task: Ialltasks) : void {
+  addtask(task: Ialltasks): void {
     this._tasks.addTasks(task)
     this.closebtn();
   }
+
+  updatetask(task: Ialltasks): void {
+    console.log(task)
+    this._tasks.updatetask(task)
+    this.closebtn();
+  }
+
 }
