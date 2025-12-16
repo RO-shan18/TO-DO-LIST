@@ -8,12 +8,33 @@ import { AlltasksService } from '../alltasks.service';
 })
 export class TodosComponent {
   show: boolean = false;
-  Totaltasks : number = 0;
 
-  constructor(private _totaltasks: AlltasksService, public openform: AlltasksService) { }
+  constructor(private _totaltasks: AlltasksService, public openform: AlltasksService, public selectfilter: AlltasksService) { }
 
   showform(value) {
     this.openform.opentaskpopup(value);
+  }
+
+  /* Total Tasks */
+  gettotaltasks() {
+    return this._totaltasks.getalltask().length;
+  }
+
+  /* Active Tasks */
+  getActivetasks() {
+    let activetask = this._totaltasks.getalltask().filter(task => !task.isCompleted);
+    return activetask.length;
+  }
+
+  /* Completed Tasks */
+  getCompletedtasks() {
+    let activetask = this._totaltasks.getalltask().filter(task => task.isCompleted );
+    return activetask.length;
+  }
+
+  /* */
+  selecttab(tabvalue) {
+    this.selectfilter.SelectedTasks(tabvalue);
   }
 
 }

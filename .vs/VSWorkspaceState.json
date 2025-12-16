@@ -4,9 +4,10 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\addtasks",
+    "\\src\\app\\alltasks",
     "\\src\\app\\passwordpopup",
     "\\src\\app\\todos"
   ],
-  "SelectedNode": "\\src\\app\\passwordpopup\\passwordpopup.component.ts",
+  "SelectedNode": "\\src\\app\\alltasks.service.ts",
   "PreviewInSolutionExplorer": false
 }

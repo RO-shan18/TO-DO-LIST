@@ -7,4 +7,5 @@ export interface Ialltasks {
   priority: string;
   category: string;
   date: Date;
+  isCompleted: boolean;
 }

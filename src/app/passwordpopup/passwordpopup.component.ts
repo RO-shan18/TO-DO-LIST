@@ -11,7 +11,7 @@ import { AlltasksService } from '../alltasks.service';
 export class PasswordpopupComponent {
   Alltasks: [];
 
-  constructor(private _alltasks: AlltasksService, private openform: AlltasksService, private updatetask: AlltasksService) { }
+  constructor(private _alltasks: AlltasksService, private openform: AlltasksService, private updtask: AlltasksService) { }
 
   ngOnInit() {
     this.Alltasks = this._alltasks.getalltask();
@@ -36,15 +36,19 @@ export class PasswordpopupComponent {
   /* Compare password */
   checkpassword(pass){
     if (this.findpassword(pass, this.Alltasks)) {
-       /*close password popup*/
+      /*close password popup*/
       this.raiseevent();
-
-      /* open form for edit using services */
-      this.openform.opentask = true;
 
       /* Put existing values inside the form */
       let findtask = this.Alltasks.find((task: Ialltasks) => task.password === pass)
-      this.updatetask.updatetasks = findtask;  /* put a value inside the alltasks service variable */
+      this.updtask.updatetasks = findtask;
+
+      /* open form for edit using services */
+      this.openform.opentask = true;
+    }
+    else {
+
+      /* Password validation */
     }
   }
 
@@ -54,6 +58,8 @@ export class PasswordpopupComponent {
 
     /* Put values object values */
     let values = Object.values(findtask);
+
+    console.log(values)
 
     for (let pass of values) {
       if (pass === Password) return true;

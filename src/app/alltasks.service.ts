@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Ialltasks } from './alltasks.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class AlltasksService {
   Addtasks = [];
   opentask: boolean = false;
-  updatetasks = {};
+  updatetasks: any = {};
 
   constructor() {
     this.loadfromlocalstorage();
@@ -20,11 +21,11 @@ export class AlltasksService {
 
   /* update task into a localStorage*/
   updatetask(updtask) {
-    this.Addtasks.forEach((task) => {
-      if (task.id === updtask.id) {
-        Object.assign(task, updtask);
-      }
-    })
+    let findtask = this.Addtasks.find((task) => task.id === updtask.id);
+
+    if (findtask) {
+      Object.assign(findtask, updtask);
+    }
 
     this.loadtoLocalstorage();
   }
@@ -46,5 +47,48 @@ export class AlltasksService {
   /* open task popup*/
   opentaskpopup(value) {
     return this.opentask = value;
+  }
+
+  /* remove from localstorage */
+  removedtask(id) {
+    /* removed an object based on id using filter */
+    this.Addtasks = this.Addtasks.filter(task => task.id !== id);
+    this.loadtoLocalstorage();
+  }
+
+  /* complete task */
+  completetask(index) {
+    let completetask = this.Addtasks[index]
+    completetask.isCompleted = true;
+
+    this.loadtoLocalstorage();
+  }
+
+  /* Filter by searchvalue */
+  searchtasks(searchvalue :string): any[] {
+    let value = searchvalue.toLowerCase().trim();
+
+    let filteredtasks = [...this.getalltask()];
+
+    return filteredtasks = filteredtasks.filter((task) => {
+      task.title.toLowerCase().includes(value) ||
+        task.category.toLowerCase().includes(value) ||
+        task.description.toLowerCase().includes(value) ||
+        task.priority.toLowerCase().includes(value)
+    })
+  }
+
+  /*Task based on tab clicked*/
+  SelectedTasks(selectedval) {
+    let filtertasks = [...this.getalltask()];
+
+    if (selectedval === 'Active') {
+      filtertasks = filtertasks.filter(task => !task.isCompleted);
+    }
+    else if (selectedval === 'Completed') {
+      filtertasks = filtertasks.filter(task => task.isCompleted);
+    }
+
+    return filtertasks;
   }
 }

@@ -21,29 +21,41 @@ export class AddtasksComponent implements OnInit {
   @Output() customevent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   closebtn() {
-    this.customevent.emit(this.closeform)
+    this.customevent.emit(this.closeform);
+
+    this.updtask.updatetasks = {}; //Empty a service object
   }
 
   /* tasks here */
   tasks: Ialltasks = {
-    id: uuidv4(),
+    id: null,
     email: null,
     password: null,
     title: null,
     description: null,
     priority: null,
     category: null,
-    date: null
+    date: null,
+    isCompleted: false,
   }
 
   addtask(task: Ialltasks): void {
-    this._tasks.addTasks(task)
+   this._tasks.addTasks({
+      ...task,
+      id: uuidv4(),
+   })
     this.closebtn();
   }
 
   updatetask(task: Ialltasks): void {
-    console.log(task)
-    this._tasks.updatetask(task)
+    this._tasks.updatetask({
+      ...task,
+      email: this.updtask.updatetasks.email,
+      password: this.updtask.updatetasks.password,
+      id: this.updtask.updatetasks.id
+    });
+
+    this.updtask.updatetasks = {}; //Empty a service object
     this.closebtn();
   }
 
