@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AlltasksService } from './alltasks.service';
+import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,15 @@ import { AlltasksService } from './alltasks.service';
 })
 export class AppComponent {
   title = 'Just do it';
+
+  /* Toast notification */
+   constructor(private messageService: MessageService) { }
+
+  showToast() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Task Added successfully!!!'
+    });
+  }
 }

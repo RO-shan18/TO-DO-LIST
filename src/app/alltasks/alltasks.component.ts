@@ -1,6 +1,7 @@
-import { EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {  OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { AlltasksService } from '../alltasks.service';
+import { TaskLimitService } from '../task-limit.service';
 
 @Component({
   selector: 'app-alltasks',
@@ -12,23 +13,37 @@ export class AlltasksComponent implements OnInit{
   totaltasks: number;
   openpassword: boolean = false;
 
-  constructor(private removetask: AlltasksService, private _alltasks: AlltasksService) { }
+  constructor(private removetask: AlltasksService,
+    public _alltasks: AlltasksService,
+    private findpass: AlltasksService,
+    private limit: TaskLimitService  ) { }
 
-  ngOnInit() {
-    this.tasksarr = this._alltasks.getalltask();
+    ngOnInit(){
+      this._alltasks.filteredTasks$.subscribe(tasks => {
+        this.tasksarr = tasks;
+      });
+
+  }
+
+  openpasspopup(open, id) {
+    this.openpassword = open
+    this._alltasks.selectedID = id
   }
 
   passwordpopup(value) {
     this.openpassword = value;
   }
 
-  deletetask(index) {
-    /* Find deleted task and delete it */
-    let finddeletedtask = this._alltasks.Addtasks[index];
-    this.removetask.removedtask(finddeletedtask.id)
+  deletetask(task) {
+     /* called removetask method */
+     this.removetask.removedtask(task.id)
 
-    /* Get updated task */
+     /* Get updated task */
     this.tasksarr = this._alltasks.getalltask();
+
+    /* Add Tasks to the alltasks services */
+    let taskdate = task.date.toString()
+    this.limit.deletelimitPriority(taskdate, task.priority)
   }
 
   /* Completed Tasks */

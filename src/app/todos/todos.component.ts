@@ -8,7 +8,7 @@ import { AlltasksService } from '../alltasks.service';
 })
 export class TodosComponent {
   show: boolean = false;
-
+  selectval: string = 'All';
   constructor(private _totaltasks: AlltasksService, public openform: AlltasksService, public selectfilter: AlltasksService) { }
 
   showform(value) {
@@ -34,6 +34,7 @@ export class TodosComponent {
 
   /* */
   selecttab(tabvalue) {
+    this.selectval = tabvalue;
     this.selectfilter.SelectedTasks(tabvalue);
   }
 

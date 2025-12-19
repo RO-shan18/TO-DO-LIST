@@ -1,0 +1,14 @@
+.all-tab {
+  background-color: black;
+  color: white !important;
+}
+
+.Active-tab {
+  background-color: blue;
+  color: white !important;
+}
+
+.Completed-tab {
+  background-color: green;
+  color: white !important;
+}

@@ -5,15 +5,18 @@
     <div *ngFor="let task of tasksarr;let i = index" class="w-75 border rounded mt-3 d-flex flex-column p-3 gap-2">
       <!-- task title-->
       <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex gap-2 align-items-center">
-          <p style="height:13px; width:13px"
-             class="border rounded"
-             (click)="completetask(i)"><mat-icon class="bg-success text-white">done</mat-icon></p>
+        <div class="d-flex gap-2 align-items-center ">
+          <div *ngIf="_alltasks.selectedtabvalue === 'All'">
+            <p style="height:13px; width:13px" [class.border]="!task.isCompleted" *ngIf="!task.isCompleted" (click)="completetask(i)"></p>
+            <p [class.border]="!task.isCompleted"
+               (click)="completetask(i)" *ngIf="task.isCompleted"
+               style="cursor: pointer">✅</p>
+          </div>
           <p class="fw-semibold fs-4" [class.text-decoration-line-through]="task.isCompleted">{{task.title}}</p>
         </div>
         <div class="d-flex gap-2 align-items-center">
-          <mat-icon (click)="passwordpopup(true)">edit</mat-icon>
-          <mat-icon (click)="deletetask(i)">delete</mat-icon>
+          <mat-icon (click)="openpasspopup(true, task.id)">edit</mat-icon>
+          <mat-icon (click)="deletetask(task)">delete</mat-icon>
         </div>
       </div>
 

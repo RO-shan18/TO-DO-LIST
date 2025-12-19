@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +14,9 @@ import { FormsModule } from '@angular/forms';
 import { NavigationbarComponent } from './navigationbar/navigationbar.component';
 import { AlltasksComponent } from './alltasks/alltasks.component';
 import { AddtasksComponent } from './addtasks/addtasks.component';
+import { ToastModule } from 'primeng/toast';
 import { PasswordpopupComponent } from './passwordpopup/passwordpopup.component';
+import { MessageService } from 'primeng/api';
 
 const configureroute: Routes = [
   { path: 'todos', component: TodosComponent },
@@ -39,9 +42,14 @@ const configureroute: Routes = [
     MatIconModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(configureroute),
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    })
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,11 +3,8 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\addtasks",
-    "\\src\\app\\alltasks",
-    "\\src\\app\\passwordpopup",
-    "\\src\\app\\todos"
+    "\\src\\app\\addtasks"
   ],
-  "SelectedNode": "\\src\\app\\alltasks.service.ts",
+  "SelectedNode": "\\src\\app\\task-limit.service.ts",
   "PreviewInSolutionExplorer": false
 }

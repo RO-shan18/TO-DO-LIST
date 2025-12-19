@@ -7,7 +7,7 @@
   </div>
 
   <!-- Email -->
-  <div class="d-flex gap-1 flex-column" *ngIf="btn.textContent === 'Add Task'">
+  <div class="d-flex gap-1 flex-column" *ngIf="btn.textContent === 'Add Task' && updtask.Addtasks.length === 0">
     <label class="fw-semibold" for="email " [class.text-danger]="email.invalid && email.touched">Email</label>
     <div class="position-relative d-flex gap-3 flex-column justify-content-center">
       <mat-icon class="position-absolute z-3 text-secondary" [class.text-danger]="email.invalid && email.touched">email</mat-icon>
@@ -26,7 +26,7 @@
   </div>
 
   <!-- Password -->
-  <div class="d-flex gap-1 flex-column" *ngIf="btn.textContent === 'Add Task'">
+  <div class="d-flex gap-1 flex-column" *ngIf="btn.textContent === 'Add Task' && updtask.Addtasks.length === 0">
     <label class="fw-semibold" for="password" [class.text-danger]="password.invalid && password.touched">Password</label>
     <div class="position-relative d-flex gap-3 flex-column justify-content-center">
       <mat-icon class="position-absolute z-3 text-secondary " [class.text-danger]="password.invalid && password.touched">lock</mat-icon>
@@ -120,7 +120,11 @@
 
   <!-- Submit -->
   <div class="d-flex gap-3 justify-content-end">
-    <button type="submit" #btn class="pt-2 pb-2 ps-2 pe-2 border rounded text-white bg-primary" [class.bg-success]="btn.textContent === 'Update Task'" [disabled]="taskform.invalid">{{updlength === 0 ? "Add Task" : "Update Task"}}</button>
+    <button type="submit" #btn
+            class="pt-2 pb-2 ps-2 pe-2 border rounded text-white bg-primary"
+            [class.bg-success]="updlength"
+            [disabled]="taskform.invalid"
+             >{{updlength === 0 ? "Add Task" : "Update Task"}}</button>
     <button type="reset" class="pt-2 pb-2 ps-2 pe-2 border rounded text-white bg-danger" [disabled]="taskform.invalid">Cancel</button>
   </div>
 
